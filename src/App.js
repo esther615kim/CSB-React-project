@@ -4,7 +4,9 @@ import {
   makeStyles, //스타일링용
   Checkbox,
   Button,
+  ThemeProvider,
   Typography,
+  createMuiTheme,
   TextField,
   AppBar,
   ButtonGroup,
@@ -12,7 +14,15 @@ import {
 } from "@material-ui/core";
 //import { CheckBox } from "@material-ui/icons";
 //import { SaveIcon } from "@mui/icons-material";
-
+import { deepPurple, pink, blue } from "@material-ui/core/colors";
+//커스텀 색상
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: deepPurple[200]
+    }
+  }
+});
 //스타일링
 const useStyles = makeStyles({
   btn: {
@@ -60,25 +70,27 @@ function ClickCheckbox() {
 
 export default function App() {
   return (
-    <div className="App">
-      {/* 날짜입력 type="date" 시간입력 type="time"*/}
-      <TextField type="date" mt={3} variant="outlined" />
-      {/* 이메일 type="email"
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        {/* 날짜입력 type="date" 시간입력 type="time"*/}
+        <TextField type="date" mt={3} variant="outlined" />
+        {/* 이메일 type="email"
       <TextField
         label="your email"
         type="email"
         placeholder="test@test.com"
         mt={3}
       /> */}
-      {/* <TextField type="time" mt={3} variant="outlined" /> */}
-      {/* 함수를 컴포넌트로 입력할 수 있음!! */}
-      <ClickCheckbox />
-      <ButtonGroup size="large" variant="contained">
-        <Button>save</Button>
-        <Button>delete</Button>
-        <Button>like</Button>
-      </ButtonGroup>
-      <StyledButton />
-    </div>
+        {/* <TextField type="time" mt={3} variant="outlined" /> */}
+        {/* 함수를 컴포넌트로 입력할 수 있음!! */}
+        <ClickCheckbox />
+        <ButtonGroup color="primary" size="large" variant="contained">
+          <Button>save</Button>
+          <Button>delete</Button>
+          <Button>like</Button>
+        </ButtonGroup>
+        <StyledButton />
+      </div>
+    </ThemeProvider>
   );
 }
